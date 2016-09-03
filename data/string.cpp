@@ -11,7 +11,9 @@ namespace data
   
   string :: string(const char * bytes, const size_t & size)
   {
-    this->_bytes = new char[size];
+    this->_bytes = new char[size + 1];
+    this->_bytes[size] = '\0';
+    
     memcpy(this->_bytes, bytes, size);
     this->_size = size;
   }
