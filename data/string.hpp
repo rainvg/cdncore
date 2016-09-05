@@ -5,7 +5,6 @@
 
 namespace data
 {
-
 };
 
 #endif

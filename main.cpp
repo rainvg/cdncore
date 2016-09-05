@@ -1,9 +1,7 @@
 #include <iostream>
 
-#include "data/string.hpp"
+#include "network/address.hpp"
 
 int main()
 {
-  data :: string s("pippo");
-  std :: cout << s.size() << std :: endl;
 }
