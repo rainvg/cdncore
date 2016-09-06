@@ -1,4 +1,5 @@
 #include "address.hpp"
+#include "../exception.hpp"
 
 namespace network
 {
@@ -18,9 +19,7 @@ namespace network
     if(record)
       memcpy(&(this->_ip), record->h_addr, sizeof(in_addr_t));
     else
-    {
-      // TODO: throw exception
-    }
+      throw exception <enetwork, eaddress, ehost_not_found> {};
   }
   
   address :: ip :: ip(const address & address) : _ip(address._address.sin_addr.s_addr)

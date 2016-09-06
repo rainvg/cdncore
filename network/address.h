@@ -18,6 +18,10 @@ namespace network
 #include <netinet/in.h>
 #include <string.h>
 
+// Includes
+
+#include "../exception.h"
+
 namespace network
 {
 	class address
