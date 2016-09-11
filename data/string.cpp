@@ -44,7 +44,7 @@ namespace data
   
   // Getters
   
-  const size_t & string :: size()
+  const size_t & string :: size() const
   {
     return this->_size;
   }
@@ -57,6 +57,12 @@ namespace data
     this->write(index + sizeof(class network :: address :: ip), that.port());
   }
   
+  template <> void string :: write(const size_t & index, const string & that)
+  {
+    this->write(index, (uint16_t) that.size());
+    memcpy(this->_bytes + index + sizeof(uint16_t), that._bytes, that.size());
+  }
+  
   template <> network :: address string :: read <network :: address> (const size_t & index)
   {
     class network :: address :: ip ip = this->read <class network :: address :: ip> (index);
@@ -65,11 +71,35 @@ namespace data
     return network :: address(ip, port);
   }
   
-  // Static methods
+  template <> string string :: read <string> (const size_t & index)
+  {
+    size_t size = this->read <uint16_t> (index);
+    string that(this->_bytes + index + sizeof(uint16_t), size);
+    return that;
+  }
   
-  template <> size_t string :: size(const network :: address & that)
+  // Private methods
+  
+  template <> size_t string :: __read_size(const size_t & index, const network :: address & that)
   {
     return sizeof(class network :: address :: ip) + sizeof(class network :: address :: port);
+  }
+  
+  template <> size_t string :: __read_size(const size_t & index, const string & that)
+  {
+    return sizeof(uint16_t) + this->read <uint16_t> (index);
+  }
+  
+  // Static methods
+  
+  template <> size_t string :: __write_size(const network :: address & that)
+  {
+    return sizeof(class network :: address :: ip) + sizeof(class network :: address :: port);
+  }
+  
+  template <> size_t string :: __write_size(const string & that)
+  {
+    return sizeof(uint16_t) + that.size();
   }
   
   // Operators
@@ -82,6 +112,18 @@ namespace data
   const char & string :: operator [] (const size_t & index) const
   {
     return this->_bytes[index];
+  }
+  
+  void string :: operator = (const string & that)
+  {
+    if(this->_size)
+      delete [] this->_bytes;
+    
+    this->_bytes = new char[that._size + 1];
+    this->_bytes[that._size] = '\0';
+    
+    memcpy(this->_bytes, that._bytes, that._size);
+    this->_size = that._size;
   }
   
   // Casting

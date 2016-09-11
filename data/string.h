@@ -42,7 +42,7 @@ namespace data
     
     // Getters
     
-    const size_t & size();
+    const size_t & size() const;
     
     // Methods
     
@@ -53,17 +53,34 @@ namespace data
     template <typename type> void read(const size_t &, type &);
     template <typename type, typename... types> void read(const size_t &, type &, types & ...);
     
+  private:
+    
+    // Private methods
+    
+    template <typename type> size_t __read_size(const size_t &, const type &);
+    template <typename type, typename... types> size_t __read_size(const size_t &, const type &, const types & ...);
+    
+  public:
+    
     // Static methods
     
-    template <typename type> static size_t size(const type &);
-    template <typename type, typename... types> static size_t size(const type &, const types & ...);
-    
     template <typename ... types> static string forge(const types & ...);
+    
+  private:
+    
+    // Private static methods
+    
+    template <typename type> static size_t __write_size(const type &);
+    template <typename type, typename... types> static size_t __write_size(const type &, const types & ...);
+    
+  public:
     
     // Operators
     
     char & operator [] (const size_t &);
     const char & operator [] (const size_t &) const;
+    
+    void operator = (const string &);
     
     // Casting
     

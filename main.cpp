@@ -5,6 +5,12 @@
 
 int main()
 {
-  data :: string x = data :: string :: forge(network :: address("127.0.0.1", 1234));
-  std :: cout << x.read <network :: address> (0) << std :: endl;
+  data :: string x = data :: string :: forge(data :: string("pippo"), data :: string("cane"), data :: string("pluto"));
+  
+  data :: string a, b, c;
+  x.read(0, a, b, c);
+  
+  std :: cout << a << std :: endl;
+  std :: cout << b << std :: endl;
+  std :: cout << c << std :: endl;
 }
