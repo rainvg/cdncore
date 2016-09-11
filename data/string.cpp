@@ -49,6 +49,29 @@ namespace data
     return this->_size;
   }
   
+  // Methods
+  
+  template <> void string :: write(const size_t & index, const network :: address & that)
+  {
+    this->write(index, that.ip());
+    this->write(index + sizeof(class network :: address :: ip), that.port());
+  }
+  
+  template <> network :: address string :: read <network :: address> (const size_t & index)
+  {
+    class network :: address :: ip ip = this->read <class network :: address :: ip> (index);
+    class network :: address :: port port = this->read <class network :: address :: port> (index + sizeof(class network :: address :: ip));
+    
+    return network :: address(ip, port);
+  }
+  
+  // Static methods
+  
+  template <> size_t string :: size(const network :: address & that)
+  {
+    return sizeof(class network :: address :: ip) + sizeof(class network :: address :: port);
+  }
+  
   // Operators
   
   char & string :: operator [] (const size_t & index)

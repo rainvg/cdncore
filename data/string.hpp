@@ -45,7 +45,7 @@ namespace data
   
   template <typename type, typename... types> size_t string :: size(const type & that, const types & ... those)
   {
-    return sizeof(that) + size(those...);
+    return size(that) + size(those...);
   }
   
   template <typename... types> string string :: forge(const types & ... those)

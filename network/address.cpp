@@ -1,5 +1,4 @@
 #include "address.hpp"
-#include "../exception.hpp"
 
 namespace network
 {
@@ -56,6 +55,17 @@ namespace network
   
   address :: address()
   {
+  }
+  
+  address :: address(const class ip & ip, const class port & port)
+  {
+    this->_address.sin_family = AF_INET;
+    this->_address.sin_addr.s_addr = ip._ip;
+    this->_address.sin_port = port._port;
+    
+    #ifdef __APPLE__
+    memset(this->_address.sin_zero, '\0', sizeof(this->_address.sin_zero));
+    #endif
   }
   
   address :: address(const char * host, const uint16_t & port)

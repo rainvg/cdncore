@@ -5,7 +5,6 @@
 
 namespace network
 {
-
 };
 
 #endif

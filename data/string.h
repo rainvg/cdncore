@@ -13,6 +13,10 @@ namespace data
 #include <stddef.h>
 #include <string.h>
 
+// Includes
+
+#include "../network/address.h"
+
 namespace data
 {
 	class string

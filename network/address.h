@@ -95,6 +95,7 @@ namespace network
     // Constructors
     
     address();
+    address(const ip &, const port &);
     address(const char *, const uint16_t &);
     address(const address &);
     
