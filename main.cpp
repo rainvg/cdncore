@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "network/address.hpp"
+#include "data/string.hpp"
 
 int main()
 {

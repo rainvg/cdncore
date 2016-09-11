@@ -9,6 +9,14 @@ namespace data
     this->_size = 0;
   }
   
+  string :: string(const size_t & size)
+  {
+    this->_bytes = new char[size + 1];
+    this->_bytes[size] = '\0';
+    
+    this->_size = size;
+  }
+  
   string :: string(const char * bytes, const size_t & size)
   {
     this->_bytes = new char[size + 1];

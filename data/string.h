@@ -27,6 +27,7 @@ namespace data
     // Constructors
     
     string();
+    string(const size_t &);
     string(const char *, const size_t &);
     string(const char *);
     string(const string &);
@@ -38,6 +39,22 @@ namespace data
     // Getters
     
     const size_t & size();
+    
+    // Methods
+    
+    template <typename type> void write(const size_t &, const type &);
+    template <typename type, typename... types> void write(const size_t &, const type &, const types & ...);
+    
+    template <typename type> type read(const size_t &);
+    template <typename type> void read(const size_t &, type &);
+    template <typename type, typename... types> void read(const size_t &, type &, types & ...);
+    
+    // Static methods
+    
+    template <typename type> static size_t size(const type &);
+    template <typename type, typename... types> static size_t size(const type &, const types & ...);
+    
+    template <typename ... types> static string forge(const types & ...);
     
     // Operators
     
