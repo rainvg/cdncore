@@ -37,8 +37,8 @@ namespace settings
 
 namespace platform
 {
-	namespace endianess
-	{
+  namespace endianess
+  {
     #ifdef __BYTE_ORDER
     #if __BYTE_ORDER == __BIG_ENDIAN
     #define __core__platform__endianess__endianess big
@@ -133,7 +133,7 @@ namespace platform
     // Functions
     
     void translate(char *, const size_t &);
-	};
+  };
 };
 
 #endif
