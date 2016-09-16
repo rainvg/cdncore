@@ -13,8 +13,6 @@ namespace data
 #include <stddef.h>
 #include <string.h>
 
-#include <iostream>
-
 // Includes
 
 #include "../network/address.h"

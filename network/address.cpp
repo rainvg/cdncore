@@ -95,6 +95,18 @@ namespace network
     return (class port)(*this);
   }
   
+  // Casting
+  
+  address :: operator sockaddr_in & ()
+  {
+    return this->_address;
+  }
+  
+  address :: operator const sockaddr_in & () const
+  {
+    return this->_address;
+  }
+  
   // Ostream integration
   
   std :: ostream & operator << (std :: ostream & out, const class address :: ip & that)

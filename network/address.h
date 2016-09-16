@@ -103,6 +103,11 @@ namespace network
     
     port port() const;
     ip ip() const;
+    
+    // Casting
+    
+    operator sockaddr_in & ();
+    operator const sockaddr_in & () const;
 	};
   
   // Ostream integration
