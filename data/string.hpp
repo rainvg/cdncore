@@ -10,6 +10,23 @@ namespace data
   template <typename type> void string :: write(const size_t & index, const type & that)
   {
     memcpy(this->_bytes + index, (char *) &that, sizeof(that));
+    
+    struct translator
+    {
+      static inline void run(char * bytes, const size_t & size)
+      {
+        platform :: endianess :: translate(bytes, size);
+      }
+    };
+    
+    struct idler
+    {
+      static inline void run(char * bytes, const size_t & size)
+      {
+      }
+    };
+    
+    std :: conditional <std :: is_arithmetic <type> :: value, translator, idler> :: type :: run(this->_bytes + index, sizeof(that));
   }
   
   template <typename type, typename... types> void string :: write(const size_t & index, const type & that, const types & ... those)
@@ -22,6 +39,24 @@ namespace data
   {
     type that;
     memcpy((char *) &that, this->_bytes + index, sizeof(that));
+    
+    struct translator
+    {
+      static inline void run(char * bytes, const size_t & size)
+      {
+        platform :: endianess :: translate(bytes, size);
+      }
+    };
+    
+    struct idler
+    {
+      static inline void run(char * bytes, const size_t & size)
+      {
+      }
+    };
+    
+    std :: conditional <std :: is_arithmetic <type> :: value, translator, idler> :: type :: run((char *) &that, sizeof(that));
+    
     return that;
   }
   
