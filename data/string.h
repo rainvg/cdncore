@@ -54,6 +54,8 @@ namespace data
     template <typename type> void read(const size_t &, type &);
     template <typename type, typename... types> void read(const size_t &, type &, types & ...);
     
+    ssize_t find(const string &);
+    
   private:
     
     // Private methods
@@ -80,6 +82,8 @@ namespace data
     
     char & operator [] (const size_t &);
     const char & operator [] (const size_t &) const;
+    
+    string operator () (const size_t &, const size_t &) const;
     
     void operator = (const string &);
     

@@ -78,6 +78,15 @@ namespace data
     return that;
   }
   
+  ssize_t string :: find(const string & needle)
+  {
+    for(ssize_t i = 0; i <= (ssize_t) this->_size - (ssize_t) needle._size; i++)
+      if(!memcmp(this->_bytes + i, needle._bytes, needle._size))
+        return i;
+    
+    return -1;
+  }
+  
   // Private methods
   
   template <> size_t string :: __read_size(const size_t & index, const network :: address & that)
@@ -112,6 +121,11 @@ namespace data
   const char & string :: operator [] (const size_t & index) const
   {
     return this->_bytes[index];
+  }
+  
+  string string :: operator () (const size_t & beg, const size_t & size) const
+  {
+    return string(this->_bytes + beg, size);
   }
   
   void string :: operator = (const string & that)
