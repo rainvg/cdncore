@@ -40,6 +40,7 @@ namespace network :: socket
     
     // Getters
     
+    int descriptor();
     uint16_t port();
     
     // Methods
@@ -49,6 +50,8 @@ namespace network :: socket
     data :: string receive();
     
     void enable_broadcast(const bool &);
+    
+    void close();
 	};
 };
 

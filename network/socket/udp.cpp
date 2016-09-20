@@ -15,6 +15,11 @@ namespace network :: socket
   
   // Getters
   
+  int udp :: descriptor()
+  {
+    return this->_descriptor;
+  }
+  
   uint16_t udp :: port()
   {
     return this->_port;
@@ -77,5 +82,14 @@ namespace network :: socket
     int option = enable;
     if(setsockopt(this->_descriptor, SOL_SOCKET, SO_BROADCAST, &option, sizeof(int)))
       throw exception <enetwork, esocket, eudp, esetsockopt_failed> {};
+  }
+  
+  void udp :: close()
+  {
+    if(this->_descriptor < 0)
+      throw exception <enetwork, esocket, etcp, esocket_closed> {};
+    
+    :: close(this->_descriptor);
+    this->_descriptor = -1;
   }
 };
