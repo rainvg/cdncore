@@ -54,7 +54,7 @@ namespace network :: socket
     }
   }
   
-  data :: string udp :: receive()
+  udp :: packet udp :: receive()
   {
     if(this->_descriptor < 0)
       throw exception <enetwork, esocket, eudp, esocket_closed> {};
@@ -74,7 +74,7 @@ namespace network :: socket
         throw exception <enetwork, esocket, eudp, ereceive_failed> {};
     }
     
-    return data :: string(buffer, bytes_received);
+    return {.remote = source, .message = data :: string(buffer, bytes_received)};
   }
   
   void udp :: enable_broadcast(const bool & enable)

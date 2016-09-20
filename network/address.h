@@ -97,6 +97,7 @@ namespace network
     address();
     address(const ip &, const port &);
     address(const char *, const uint16_t &);
+    address(const sockaddr_in &);
     address(const address &);
     
     // Getters

@@ -79,6 +79,10 @@ namespace network
     #endif
   }
   
+  address :: address(const sockaddr_in & address) : _address(address)
+  {
+  }
+  
   address :: address(const address & that) : _address(that._address)
   {
   }

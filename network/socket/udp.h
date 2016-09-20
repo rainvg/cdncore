@@ -27,6 +27,18 @@ namespace network :: socket
 {
 	class udp
 	{
+  public:
+    
+    // Nested classes
+    
+    struct packet
+    {
+      address remote;
+      data :: string message;
+    };
+    
+  private:
+    
     // Members
     
     int _descriptor;
@@ -47,7 +59,7 @@ namespace network :: socket
     
     void bind(const uint16_t &);
     void send(const address &, const data :: string &);
-    data :: string receive();
+    packet receive();
     
     void enable_broadcast(const bool &);
     
