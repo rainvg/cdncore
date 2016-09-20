@@ -47,6 +47,8 @@ namespace network :: socket
     void bind(const uint16_t &);
     void send(const address &, const data :: string &);
     data :: string receive();
+    
+    void enable_broadcast(const bool &);
 	};
 };
 

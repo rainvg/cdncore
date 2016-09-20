@@ -8,7 +8,7 @@ namespace network :: socket
   {
     this->_descriptor = :: socket(PF_INET, SOCK_DGRAM, 0);
     
-    int optreuse = 1;
+    int optreuse = true;
     if (:: setsockopt(this->_descriptor, SOL_SOCKET, SO_REUSEADDR, &optreuse, sizeof(int)))
       throw exception <enetwork, esocket, eudp, esetsockopt_failed> {};
   }
@@ -70,5 +70,12 @@ namespace network :: socket
     }
     
     return data :: string(buffer, bytes_received);
+  }
+  
+  void udp :: enable_broadcast(const bool & enable)
+  {
+    int option = enable;
+    if(setsockopt(this->_descriptor, SOL_SOCKET, SO_BROADCAST, &option, sizeof(int)))
+      throw exception <enetwork, esocket, eudp, esetsockopt_failed> {};
   }
 };
