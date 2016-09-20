@@ -25,6 +25,8 @@ namespace network :: upnp
     uint16_t port;
     data :: string path;
     
+    bool valid;
+    
     // Constructors
     
     url();

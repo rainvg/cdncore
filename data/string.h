@@ -54,7 +54,7 @@ namespace data
     template <typename type> void read(const size_t &, type &);
     template <typename type, typename... types> void read(const size_t &, type &, types & ...);
     
-    ssize_t find(const string &);
+    ssize_t find(const string &, const size_t & = 0) const;
     
   private:
     

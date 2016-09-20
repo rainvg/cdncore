@@ -78,9 +78,9 @@ namespace data
     return that;
   }
   
-  ssize_t string :: find(const string & needle)
+  ssize_t string :: find(const string & needle, const size_t & beg) const
   {
-    for(ssize_t i = 0; i <= (ssize_t) this->_size - (ssize_t) needle._size; i++)
+    for(ssize_t i = beg; i <= (ssize_t) this->_size - (ssize_t) needle._size; i++)
       if(!memcmp(this->_bytes + i, needle._bytes, needle._size))
         return i;
     
