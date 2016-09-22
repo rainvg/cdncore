@@ -75,7 +75,7 @@ namespace network :: socket
     
     // Methods
     
-    void bind(const uint16_t &);
+    void bind(const uint16_t & = 0);
     void listen();
     
     tcp accept();

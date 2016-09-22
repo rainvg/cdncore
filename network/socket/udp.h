@@ -57,7 +57,7 @@ namespace network :: socket
     
     // Methods
     
-    void bind(const uint16_t &);
+    void bind(const uint16_t & = 0);
     void send(const address &, const data :: string &);
     packet receive();
     

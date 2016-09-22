@@ -37,7 +37,17 @@ namespace network :: socket
     if(:: bind(this->_descriptor, (struct sockaddr *) &bind_address, sizeof(sockaddr_in)))
       throw exception <enetwork, esocket, eudp, ebind_failed> {};
     
-    this->_port = port;
+    if(port)
+      this->_port = port;
+    else
+    {
+      struct sockaddr_in sin;
+      socklen_t len = sizeof(sin);
+      if(getsockname(this->_descriptor, (struct sockaddr *) &sin, &len))
+        throw exception <enetwork, esocket, eudp, egetsockname_failed> {};
+      
+      this->_port = ntohs(sin.sin_port);
+    }
   }
   
   void udp :: send(const address & remote, const data :: string & message)
