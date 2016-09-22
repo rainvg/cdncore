@@ -63,6 +63,9 @@ namespace network :: socket
     
     void enable_broadcast(const bool &);
     
+    void send_timeout(const unsigned long int &);
+    void receive_timeout(const unsigned long int &);
+    
     void close();
 	};
 };

@@ -103,7 +103,7 @@ namespace network :: socket
     
     for(size_t cursor = 0; cursor < size;)
     {
-      ssize_t res = :: read(this->_descriptor, message, size - cursor);
+      ssize_t res = :: read(this->_descriptor, (char *) message + cursor, size - cursor);
       
       if(res < 0)
       {

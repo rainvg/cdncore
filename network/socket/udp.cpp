@@ -84,6 +84,28 @@ namespace network :: socket
       throw exception <enetwork, esocket, eudp, esetsockopt_failed> {};
   }
   
+  void udp :: send_timeout(const unsigned long int & ms)
+  {
+    struct timeval tv;
+    
+    tv.tv_sec = ms / 1000;
+    tv.tv_usec = (ms % 1000) * 1000;
+    
+    if(:: setsockopt(this->_descriptor, SOL_SOCKET, SO_SNDTIMEO, (char *)&tv, sizeof(struct timeval)))
+      throw exception <enetwork, esocket, eudp, esetsockopt_failed> {};
+  }
+  
+  void udp :: receive_timeout(const unsigned long int & ms)
+  {
+    struct timeval tv;
+    
+    tv.tv_sec = ms / 1000;
+    tv.tv_usec = (ms % 1000) * 1000;
+    
+    if(:: setsockopt(this->_descriptor, SOL_SOCKET, SO_RCVTIMEO, (char *)&tv, sizeof(struct timeval)))
+      throw exception <enetwork, esocket, eudp, esetsockopt_failed> {};
+  }
+  
   void udp :: close()
   {
     if(this->_descriptor < 0)
