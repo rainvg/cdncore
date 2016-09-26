@@ -4,19 +4,9 @@
 #include <miniupnpc/miniupnpc.h>
 
 #include "network/socket/udp.hpp"
-#include "network/socket/tcp.hpp"
 
 int main()
 {
-  network :: socket :: tcp sock;
-  
-  sock.bind();
-  
-  std :: cout << sock.port() << std :: endl;
-  
-  sock.listen();
-  
-  sock.accept();
-  
-  std :: cout << "Andiamolo" << std :: endl;
+  std :: cout << "Local: " << network :: address :: local() << std :: endl;
+  std :: cout << "External: " << network :: address :: external() << std :: endl;
 }

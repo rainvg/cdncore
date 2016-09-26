@@ -3,7 +3,7 @@
 #ifndef __cdncore__exception__h__ekeyword
 #define __cdncore__exception__h__ekeyword
 
-enum ekeyword {enetwork, eaddress, ehost_not_found, esocket, eudp, etcp, esetsockopt_failed, esocket_closed, ebind_failed, etimeout, esend_failed, ereceive_failed, elisten_failed, eaccept_failed, econnect_failed, egetsockname_failed};
+enum ekeyword {enetwork, eaddress, ehost_not_found, esocket, eudp, etcp, esetsockopt_failed, esocket_closed, ebind_failed, etimeout, esend_failed, ereceive_failed, elisten_failed, eaccept_failed, econnect_failed, egetsockname_failed, efcntl_failed, ebuffer_overflow};
 
 #endif
 

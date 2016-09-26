@@ -24,6 +24,7 @@ namespace settings
       namespace tcp
       {
         static constexpr size_t listen_buffer_size = 16;
+        static constexpr size_t default_receive_size = 1024;
       };
     };
   };
@@ -38,6 +39,8 @@ namespace settings
 
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
 
 // Includes
 
@@ -67,11 +70,17 @@ namespace network :: socket
     
   public:
     
+    // Destructor
+    
+    ~tcp();
+    
     // Getters
     
     int descriptor();
     uint16_t port();
+    
     address remote();
+    address interface();
     
     // Methods
     
@@ -82,7 +91,15 @@ namespace network :: socket
     void connect(const address &);
     
     void send(const data :: string &);
+    
+    data :: string receive();
     data :: string receive(const size_t &);
+    data :: string receive(const data :: string &, const size_t &);
+    
+    void send_timeout(const unsigned long int &);
+    void receive_timeout(const unsigned long int &);
+    
+    void blocking(const bool &);
     
     void close();
 	};

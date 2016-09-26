@@ -99,18 +99,6 @@ namespace data
     return sizeof(uint16_t) + this->read <uint16_t> (index);
   }
   
-  // Static methods
-  
-  template <> size_t string :: __write_size(const network :: address & that)
-  {
-    return sizeof(class network :: address :: ip) + sizeof(class network :: address :: port);
-  }
-  
-  template <> size_t string :: __write_size(const string & that)
-  {
-    return sizeof(uint16_t) + that.size();
-  }
-  
   // Operators
   
   char & string :: operator [] (const size_t & index)
@@ -150,5 +138,17 @@ namespace data
   string :: operator const char * () const
   {
     return this->_bytes;
+  }
+  
+  // Static methods
+  
+  template <> size_t string :: __write_size(const network :: address & that)
+  {
+    return sizeof(class network :: address :: ip) + sizeof(class network :: address :: port);
+  }
+  
+  template <> size_t string :: __write_size(const string & that)
+  {
+    return sizeof(uint16_t) + that.size();
   }
 };

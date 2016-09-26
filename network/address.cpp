@@ -111,6 +111,36 @@ namespace network
     return this->_address;
   }
   
+  // Static methods
+  
+  address address :: local()
+  {
+    socket :: tcp sock;
+    sock.blocking(false);
+
+    try
+    {
+      sock.connect({settings :: network :: address :: external_route_host :: ip, settings :: network :: address :: external_route_host :: port});
+    }
+    catch(...)
+    {
+    }
+    
+    return {sock.interface().ip(), 0};
+  }
+  
+  address address :: external()
+  {
+    socket :: tcp sock;
+    sock.connect({"api.ipify.org", 80});
+    sock.send("GET / HTTP/1.1\r\nHost: api.ipify.org:80\r\n\r\n");
+    
+    sock.receive("\r\n\r\n", 1024);
+    data :: string ip = sock.receive();
+    
+    return address {ip, 0};
+  }
+  
   // Ostream integration
   
   std :: ostream & operator << (std :: ostream & out, const class address :: ip & that)

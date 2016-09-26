@@ -5,6 +5,30 @@ namespace network
 	class address;
 };
 
+#ifndef __cdncore__network__address__h__settings
+#define __cdncore__network__address__h__settings
+
+// Types for settings
+
+#include <stdint.h>
+
+namespace settings
+{
+  namespace network
+  {
+    namespace address
+    {
+      namespace external_route_host
+      {
+        static constexpr const char * ip = "3.3.3.3";
+        static constexpr uint16_t port = 80;
+      };
+    };
+  };
+};
+
+#endif
+
 #if !defined(__forward__) && !defined(__cdncore__network__address__h)
 #define __cdncore__network__address__h
 
@@ -109,6 +133,11 @@ namespace network
     
     operator sockaddr_in & ();
     operator const sockaddr_in & () const;
+    
+    // Static methods
+    
+    static address local();
+    static address external();
 	};
   
   // Ostream integration

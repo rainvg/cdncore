@@ -13,6 +13,13 @@ namespace network :: socket
       throw exception <enetwork, esocket, eudp, esetsockopt_failed> {};
   }
   
+  // Destructor
+  
+  udp :: ~udp()
+  {
+    this->close();
+  }
+  
   // Getters
   
   int udp :: descriptor()
@@ -23,6 +30,16 @@ namespace network :: socket
   uint16_t udp :: port()
   {
     return this->_port;
+  }
+  
+  address udp :: interface()
+  {
+    struct sockaddr_in sin;
+    socklen_t len = sizeof(sin);
+    if(getsockname(this->_descriptor, (struct sockaddr *) &sin, &len))
+      throw exception <enetwork, esocket, eudp, egetsockname_failed> {};
+    
+    return sin;
   }
   
   // Methods
@@ -119,7 +136,7 @@ namespace network :: socket
   void udp :: close()
   {
     if(this->_descriptor < 0)
-      throw exception <enetwork, esocket, etcp, esocket_closed> {};
+      throw exception <enetwork, esocket, eudp, esocket_closed> {};
     
     :: close(this->_descriptor);
     this->_descriptor = -1;

@@ -65,19 +65,6 @@ namespace data
     
   public:
     
-    // Static methods
-    
-    template <typename ... types> static string forge(const types & ...);
-    
-  private:
-    
-    // Private static methods
-    
-    template <typename type> static size_t __write_size(const type &);
-    template <typename type, typename... types> static size_t __write_size(const type &, const types & ...);
-    
-  public:
-    
     // Operators
     
     char & operator [] (const size_t &);
@@ -91,6 +78,18 @@ namespace data
     
     operator char * ();
     operator const char * () const;
+    
+    // Static methods
+    
+    template <typename ... types> static string forge(const types & ...);
+    
+  private:
+    
+    // Private static methods
+    
+    template <typename type> static size_t __write_size(const type &);
+    template <typename type, typename... types> static size_t __write_size(const type &, const types & ...);
+
 	};
 };
 

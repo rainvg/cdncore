@@ -50,10 +50,16 @@ namespace network :: socket
     
     udp();
     
+    // Destructor
+    
+    ~udp();
+    
     // Getters
     
     int descriptor();
     uint16_t port();
+    
+    address interface();
     
     // Methods
     
