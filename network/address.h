@@ -129,6 +129,11 @@ namespace network
     port port() const;
     ip ip() const;
     
+    // Operators
+    
+    bool operator == (const address &) const;
+    bool operator != (const address &) const;
+    
     // Casting
     
     operator sockaddr_in & ();

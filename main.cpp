@@ -1,12 +1,12 @@
 #include <iostream>
 #include <thread>
 
-#include <miniupnpc/miniupnpc.h>
-
-#include "network/socket/udp.hpp"
+#include "network/diagnostics/server.hpp"
 
 int main()
 {
-  std :: cout << "Local: " << network :: address :: local() << std :: endl;
-  std :: cout << "External: " << network :: address :: external() << std :: endl;
+  network :: diagnostics :: server server;
+  server.start();
+  
+  while(true) pause();
 }

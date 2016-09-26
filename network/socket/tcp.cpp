@@ -237,9 +237,6 @@ namespace network :: socket
   
   void tcp :: close()
   {
-    if(this->_descriptor < 0)
-      throw exception <enetwork, esocket, etcp, esocket_closed> {};
-    
     :: close(this->_descriptor);
     this->_descriptor = -1;
   }

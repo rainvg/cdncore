@@ -134,10 +134,7 @@ namespace network :: socket
   }
   
   void udp :: close()
-  {
-    if(this->_descriptor < 0)
-      throw exception <enetwork, esocket, eudp, esocket_closed> {};
-    
+  { 
     :: close(this->_descriptor);
     this->_descriptor = -1;
   }

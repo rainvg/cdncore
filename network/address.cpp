@@ -99,6 +99,18 @@ namespace network
     return (class port)(*this);
   }
   
+  // Operators
+  
+  bool address :: operator == (const address & that) const
+  {
+    return this->_address.sin_addr.s_addr == that._address.sin_addr.s_addr && this->_address.sin_port == that._address.sin_port;
+  }
+  
+  bool address :: operator != (const address & that) const
+  {
+    return this->_address.sin_addr.s_addr != that._address.sin_addr.s_addr || this->_address.sin_port != that._address.sin_port;
+  }
+  
   // Casting
   
   address :: operator sockaddr_in & ()
