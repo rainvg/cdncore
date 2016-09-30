@@ -56,10 +56,10 @@ namespace network :: socket
     
     // Getters
     
-    int descriptor();
-    uint16_t port();
+    int descriptor() const;
+    uint16_t port() const;
     
-    address interface();
+    address interface() const;
     
     // Methods
     

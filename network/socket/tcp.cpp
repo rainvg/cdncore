@@ -26,22 +26,22 @@ namespace network :: socket
   
   // Getters
   
-  int tcp :: descriptor()
+  int tcp :: descriptor() const
   {
     return this->_descriptor;
   }
   
-  uint16_t tcp :: port()
+  uint16_t tcp :: port() const
   {
     return this->_port;
   }
   
-  address tcp :: remote()
+  address tcp :: remote() const
   {
     return this->_remote;
   }
   
-  address tcp :: interface()
+  address tcp :: interface() const
   {
     struct sockaddr_in sin;
     socklen_t len = sizeof(sin);

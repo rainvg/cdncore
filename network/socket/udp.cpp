@@ -22,17 +22,17 @@ namespace network :: socket
   
   // Getters
   
-  int udp :: descriptor()
+  int udp :: descriptor() const
   {
     return this->_descriptor;
   }
   
-  uint16_t udp :: port()
+  uint16_t udp :: port() const
   {
     return this->_port;
   }
   
-  address udp :: interface()
+  address udp :: interface() const
   {
     struct sockaddr_in sin;
     socklen_t len = sizeof(sin);

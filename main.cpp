@@ -5,9 +5,11 @@
 
 int main()
 {
-  network :: upnp :: client my_client;
+  network :: upnp :: client my_client(14);
   my_client.discover();
   
-  std :: cout << "Available: " << my_client.available() << std :: endl;
-  std :: cout << "Online: " << my_client.online() << std :: endl;
+  if(my_client.available() && my_client.online())
+  {
+    // Test that everything works.
+  }
 }

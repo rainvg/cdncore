@@ -76,11 +76,11 @@ namespace network :: socket
     
     // Getters
     
-    int descriptor();
-    uint16_t port();
+    int descriptor() const;
+    uint16_t port() const;
     
-    address remote();
-    address interface();
+    address remote() const;
+    address interface() const;
     
     // Methods
     
