@@ -21,10 +21,26 @@ namespace network :: diagnostics
     return this->_cone;
   }
   
+  bool client :: public_ip()
+  {
+    return this->_public_ip;
+  }
+  
   // Methods
   
   void client :: refresh()
   {
+    try
+    {
+      this->_public_ip = (address :: local() == address :: external());
+      this->_online = true;
+    }
+    catch(exception <enetwork, esocket, etcp>)
+    {
+      this->_online = false;
+      return;
+    }
+    
     address alpha(this->_remote.ip(), (class address :: port)(settings :: network :: diagnostics :: server :: ports :: alpha));
     
     address beta(this->_remote.ip(), (class address :: port)(settings :: network :: diagnostics :: server :: ports :: beta));

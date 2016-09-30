@@ -51,8 +51,10 @@ namespace network :: diagnostics
     address _remote;
     socket :: udp _socket;
     
+    bool _online;
     bool _udp;
     bool _cone;
+    bool _public_ip;
     
   public:
     
@@ -64,6 +66,7 @@ namespace network :: diagnostics
     
     bool udp();
     bool cone();
+    bool public_ip();
     
     // Methods
     

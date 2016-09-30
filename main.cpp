@@ -1,18 +1,13 @@
 #include <iostream>
 #include <thread>
 
-#include "network/diagnostics/server.hpp"
-#include "network/diagnostics/client.hpp"
+#include "network/upnp/client.hpp"
 
 int main()
 {
-  network :: diagnostics :: server server;
-  server.start();
+  network :: upnp :: client my_client;
+  my_client.discover();
   
-  usleep(1E6);
-  
-  network :: diagnostics :: client client({"localhost", 0});
-  std :: cout << client.udp() << std :: endl;
-  
-  while(true) pause();
+  std :: cout << "Available: " << my_client.available() << std :: endl;
+  std :: cout << "Online: " << my_client.online() << std :: endl;
 }
