@@ -11,5 +11,15 @@ int main()
   if(my_client.available() && my_client.online())
   {
     // Test that everything works.
+    
+    std :: cout << "Here I am!" << std :: endl;
+    
+    network :: socket :: tcp sock;
+    sock.bind();
+    
+    auto portmap = my_client.map(sock);
+    
+    std :: cout << portmap.local << std :: endl;
+    std :: cout << portmap.external << std :: endl;
   }
 }

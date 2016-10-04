@@ -177,6 +177,8 @@ namespace network :: upnp
 
     int status = UPNP_AddAnyPortMapping(this->_urls.controlURL, this->_data.first.servicetype, external_port, local_port, this->_local_ip, this->_description, protocol, 0, "0", reserved_port);
     
+    // FIXME: Find out why this doesn't work. I need a working UPnP connection to get that to work!
+    
     if(status != UPNPCOMMAND_SUCCESS)
       throw exception <enetwork, eupnp, eclient, emap_failed> {};
 
